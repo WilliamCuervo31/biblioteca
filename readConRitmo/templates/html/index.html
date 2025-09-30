@@ -1,0 +1,65 @@
+{% extends './base.html'%}
+{% load static %}
+
+{% block navbar_button %}Inicia Sesión{% endblock %}
+{% block navbar_link %}{% url 'inicioSesion' %}{% endblock %}
+
+{% block content %}
+
+<section class="container my-5">
+  <div class="row align-items-center">
+    <div class="col-md-6">
+      <h1 class="display-5 fw-bold">Hola Amigo!</h1>
+      <p class="lead">Bienvenido a un mundo lleno de historias muy entretenidas y que te pueden interesar. ¡Regístrate y empecemos a leer juntos!</p>
+      <a class="btn btn-purple btn-lg text-white" style="background-color: #8000c9;" href="{% url 'register' %}">Regístrate</a>
+    </div>
+    <div class="col-md-6">
+      <img src="{% static 'imgs/lectura.jpg' %}" class="img-fluid rounded" alt="Lectura de cuentos" />
+    </div>
+  </div>
+</section>
+
+<section class="container my-5">
+  <h2 class="fw-bold mb-4 text-end">Nuestro Títulos</h2>
+  <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 g-3">
+    <div class="col"><img src="{% static 'imgs/pimienta.jpg' %}" class="img-fluid rounded me-2" alt="Libro 1" /></div>
+    <div class="col"><img src="{% static 'imgs/despedida.jpg' %}" class="img-fluid rounded ms-5" alt="Libro 2" /></div>
+    <div class="col"><img src="{% static 'imgs/ejem1.jpg' %}" class="img-fluid rounded h-75 ms-2" alt="Libro 3" /></div>
+    <div class="col"><img src="{% static 'imgs/nacho.jpg' %}" class="img-fluid rounded" alt="Libro 4" /></div>
+  </div>
+</section>
+
+<section class="container my-5">
+  <div class="p-5 rounded-4 shadow-lg text-white" style="background: linear-gradient(135deg, #4b006e, #2d0c45);">
+    <div class="row align-items-center">
+      
+      <!-- Texto -->
+      <div class="col-md-6">
+        <h2 class="fw-bold">Sobre Nosotros</h2>
+
+        <h5 class="mt-4">Subheading</h5>
+        <p class="mb-3">Body text for whatever you'd like to expand on the main point.</p>
+
+        <h5>Subheading</h5>
+        <p class="mb-3">Body text for whatever you'd like to say. Add main takeaway points, quotes, anecdotes.</p>
+
+        <h5>Subheading</h5>
+        <p>Body text for whatever you'd like to add more to the main point. It provides details, explanations, and context.</p>
+
+        <!-- Botones -->
+        <div class="mt-4">
+          <a href="#" class="btn btn-pink me-2" style="background-color:#e1306c; color: white;">Instagram</a>
+          <a href="#" class="btn btn-primary">Facebook</a>
+        </div>
+      </div>
+
+      <!-- Imagen -->
+      <div class="col-md-6 text-center mt-4 mt-md-0">
+        <img src="{% static 'imgs/persona.jpg' %}" alt="Persona" class="img-fluid rounded-4" style="max-height: 400px;" />
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% endblock %}
