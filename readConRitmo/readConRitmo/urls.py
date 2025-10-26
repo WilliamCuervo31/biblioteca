@@ -9,9 +9,9 @@ from readConRitmo import settings
 urlpatterns = [
     path('admin/', admin.site.urls, name='admin'),
     path('', views.index, name='index'),
-    path('/consultaLibro', views.consulta_libros, name='consulta_libro'),
-    path('/listarEtiquetas', views.listarEtiquetas, name='lista_etiquetas'),
-    path('/crearEtiqueta', views.crearEtiqueta, name='crear_etiqueta')
+    path('consultaLibro/', views.consultaLibros, name='consulta_libro'),
+    path('listarEtiquetas/', views.listarEtiquetas, name='lista_etiquetas'),
+    path('crearEtiqueta/', views.crearEtiqueta, name='crear_etiqueta')
 ]
 
 if settings.DEBUG:

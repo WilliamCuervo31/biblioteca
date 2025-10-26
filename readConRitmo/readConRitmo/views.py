@@ -24,16 +24,16 @@ def consultaLibros(request):
     if orden == 'desc':
         libros_ordenados.reverse()
 
-    return render(request, 'consulta_libros.html', {
+    return render(request, 'html/consulta_libros.html', {
         'libros': libros_ordenados,
         'orden': orden
     })
 
-def listarEtiqueta(request):
+def listarEtiquetas(request):
     
     etiquetas = Etiqueta.objects.all()
     
-    return render(request, 'listar_etiqueta.html', {
+    return render(request, 'html/listar_etiquetas.html', {
         'etiquetas': etiquetas
     })
 
@@ -62,4 +62,4 @@ def crearEtiqueta(request):
         messages.success(request, f"Se creó correctamente la etiqueta {etiqueta_nueva.nombre}")
         return redirect('lista_etiquetas')
 
-    return render(request, 'crear_etiqueta.html', {'etiquetas': etiquetas})
+    return render(request, 'html/crear_etiqueta.html', {'etiquetas': etiquetas})

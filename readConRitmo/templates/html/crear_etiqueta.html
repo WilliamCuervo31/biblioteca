@@ -2,14 +2,14 @@
 {% load static %}
 
 {% block navbar_button %}Volver{% endblock %}
-{% block navbar_link %}{% url 'listarEtiquetas' %}{% endblock %}
+{% block navbar_link %}{% url 'lista_etiquetas' %}{% endblock %}
 
 {% block content %}
 <section class="container my-5">
   <h2 class="fw-bold text-center mb-4" style="color:#8000c9;">Crear Nueva Etiqueta</h2>
 
   <div class="card shadow-lg p-4 border-0 rounded-4 mx-auto" style="max-width: 600px;">
-    <form method="get" action="{% url 'crearEtiqueta' %}">
+    <form method="get" action="{% url 'crear_etiqueta' %}">
       <div class="mb-3">
         <label class="form-label">Nombre</label>
         <input type="text" name="nombre" class="form-control" placeholder="Ejemplo: Fantasía" required>

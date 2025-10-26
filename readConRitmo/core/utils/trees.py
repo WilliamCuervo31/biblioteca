@@ -1,6 +1,8 @@
 class NodoLibro:
     def __init__(self, libro):
         self.libro = libro 
+        self.left = None
+        self.right = None
 
 class LibroBST:
     def __init__(self):

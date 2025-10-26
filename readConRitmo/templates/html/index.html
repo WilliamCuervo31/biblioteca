@@ -2,7 +2,6 @@
 {% load static %}
 
 {% block navbar_button %}Inicia Sesión{% endblock %}
-{% block navbar_link %}{% url 'inicioSesion' %}{% endblock %}
 
 {% block content %}
 
@@ -11,7 +10,7 @@
     <div class="col-md-6">
       <h1 class="display-5 fw-bold">Hola Amigo!</h1>
       <p class="lead">Bienvenido a un mundo lleno de historias muy entretenidas y que te pueden interesar. ¡Regístrate y empecemos a leer juntos!</p>
-      <a class="btn btn-purple btn-lg text-white" style="background-color: #8000c9;" href="{% url 'register' %}">Regístrate</a>
+      <a class="btn btn-purple btn-lg text-white" style="background-color: #8000c9;" href="">Regístrate</a>
     </div>
     <div class="col-md-6">
       <img src="{% static 'imgs/lectura.jpg' %}" class="img-fluid rounded" alt="Lectura de cuentos" />

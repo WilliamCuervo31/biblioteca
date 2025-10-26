@@ -2,7 +2,6 @@
 {% load static %}
 
 {% block navbar_button %}Volver{% endblock %}
-{% block navbar_link %}{% url 'inicio' %}{% endblock %}
 
 {% block content %}
 <section class="container my-5">
@@ -32,7 +31,7 @@
   </div>
 
   <div class="text-center mt-4">
-    <a href="{% url 'crearEtiqueta' %}" class="btn text-white btn-lg" style="background-color: #8000c9;">Crear nueva etiqueta</a>
+    <a href="{% url 'crear_etiqueta' %}" class="btn text-white btn-lg" style="background-color: #8000c9;">Crear nueva etiqueta</a>
   </div>
 </section>
 {% endblock %}

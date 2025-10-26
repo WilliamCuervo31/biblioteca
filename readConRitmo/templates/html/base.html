@@ -1,0 +1,78 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <title>{% block title %}{% endblock %}</title>
+
+    <style>
+      
+      .welcome-box {
+          border: 2px solid #4d1c8a;
+          border-radius: 1rem;
+          padding: 1rem 1rem;
+          text-align: left;
+          width: 90%;
+          margin-bottom: 2rem;
+          margin-left: 4rem;
+        }
+        .book-cover {
+          max-height: 250px;
+          object-fit: cover;
+        }
+        .footer {
+          background: #3b0a4e;
+          color: white;
+          padding: 2rem 0;
+        }
+        .footer a {
+          color: #ccc;
+          text-decoration: none;
+        }
+        .gradient-section {
+          background: linear-gradient(to bottom, #fce4ff, #b96be7);
+          padding: 3rem 0;
+        }
+
+        .bg-gradient-purple {
+          background: linear-gradient(180deg, white, #4d1c8a);   
+            background-repeat: no-repeat;
+  background-attachment: fixed;      
+        }
+
+        .btn-experiencia {
+  background-color: #8000c9;
+  border-color: #8000c9;
+  color: white;
+}
+
+.btn-experiencia:hover {
+  background-color: #6600a1;
+  border-color: #6600a1;
+  color: white;
+}
+
+    </style>
+
+</head>
+<body class="bg-gradient-purple {% block body_styles %}{% endblock %}">
+    <nav class="navbar navbar-expand-lg bg-light px-4">
+  <a class="navbar-brand fw-bold" href="{% url 'index' %}">Read con Ritmo</a>
+  <div class="collapse navbar-collapse justify-content-end">
+    <ul class="navbar-nav">
+      <li class="nav-item mx-2"><a class="nav-link" href="">Inicio</a></li>
+      <li class="nav-item mx-2"><a class="nav-link" href="#">Experiencias</a></li>
+      <li class="nav-item mx-2"><a class="nav-link" href="">Títulos</a></li>
+      <li class="nav-item mx-2">
+        <a class="btn" style="background-color: #8000c9; color: white;" href="{% block navbar_link %}{% endblock %}">{% block navbar_button %}{% endblock %}</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+{% block content %}{% endblock %}
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+</html>
