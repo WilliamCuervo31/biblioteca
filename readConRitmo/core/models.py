@@ -24,6 +24,14 @@ class Etiqueta(models.Model):
     color = models.CharField('Color', max_length=7)
     activo = models.BooleanField('Activo', default=True)
 
+    padre = models.ForeignKey(
+        'self',
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        related_name='hijos'
+    )
+
     class Meta:
         verbose_name = 'etiqueta'
         verbose_name_plural = 'etiquetas'
