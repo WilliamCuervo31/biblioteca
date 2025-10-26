@@ -1,0 +1,44 @@
+{% extends './base.html' %}
+{% load static %}
+
+{% block navbar_button %}Volver{% endblock %}
+{% block navbar_link %}{% url 'listarEtiquetas' %}{% endblock %}
+
+{% block content %}
+<section class="container my-5">
+  <h2 class="fw-bold text-center mb-4" style="color:#8000c9;">Crear Nueva Etiqueta</h2>
+
+  <div class="card shadow-lg p-4 border-0 rounded-4 mx-auto" style="max-width: 600px;">
+    <form method="get" action="{% url 'crearEtiqueta' %}">
+      <div class="mb-3">
+        <label class="form-label">Nombre</label>
+        <input type="text" name="nombre" class="form-control" placeholder="Ejemplo: Fantasía" required>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Descripción</label>
+        <textarea name="descripcion" class="form-control" rows="3" placeholder="Describe brevemente la etiqueta"></textarea>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Color</label>
+        <input type="color" name="color" class="form-control form-control-color" value="#8000c9">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Etiqueta padre (opcional)</label>
+        <select name="padre" class="form-select">
+          <option value="">-- Sin padre --</option>
+          {% for etiqueta in etiquetas %}
+            <option value="{{ etiqueta.id }}">{{ etiqueta.nombre }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="text-center mt-4">
+        <button type="submit" class="btn text-white btn-lg" style="background-color:#8000c9;">Crear</button>
+      </div>
+    </form>
+  </div>
+</section>
+{% endblock %}

@@ -12,17 +12,29 @@ def index(request):
     return render(request, 'html/index.html')
 
 def consultaLibros(request):
-    
     arbol = LibroBST()
-
     libros = Libros.objects.all()
+    orden = request.GET.get('orden', 'asc')
+
     for l in libros:
         arbol.insertar(l)
 
     libros_ordenados = arbol.in_order()
 
-    return render(request, '', {
-        'libros': libros_ordenados
+    if orden == 'desc':
+        libros_ordenados.reverse()
+
+    return render(request, 'consulta_libros.html', {
+        'libros': libros_ordenados,
+        'orden': orden
+    })
+
+def listarEtiqueta(request):
+    
+    etiquetas = Etiqueta.objects.all()
+    
+    return render(request, 'listar_etiqueta.html', {
+        'etiquetas': etiquetas
     })
 
 def crearEtiqueta(request):
@@ -47,7 +59,7 @@ def crearEtiqueta(request):
             padre = padre
         )
 
-        messages.success(request, f"✅ Se creó correctamente la etiqueta {etiqueta_nueva.nombre}")
+        messages.success(request, f"Se creó correctamente la etiqueta {etiqueta_nueva.nombre}")
         return redirect('lista_etiquetas')
 
     return render(request, 'crear_etiqueta.html', {'etiquetas': etiquetas})

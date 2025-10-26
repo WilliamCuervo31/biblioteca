@@ -1,0 +1,46 @@
+{% extends './base.html' %}
+{% load static %}
+
+{% block navbar_button %}Volver{% endblock %}
+{% block navbar_link %}{% url 'inicio' %}{% endblock %}
+
+{% block content %}
+
+<section class="container my-5">
+  <h2 class="fw-bold mb-4 text-center" style="color:#8000c9;">Listado de Libros</h2>
+
+  <!-- Filtro de orden -->
+  <form method="get" action="{% url 'consultaLibros' %}" class="text-end mb-4">
+    <label for="orden" class="form-label me-2 fw-semibold">Ordenar:</label>
+    <select name="orden" id="orden" class="form-select d-inline-block w-auto">
+      <option value="asc" {% if request.GET.orden == "asc" %}selected{% endif %}>A - Z</option>
+      <option value="desc" {% if request.GET.orden == "desc" %}selected{% endif %}>Z - A</option>
+    </select>
+    <button type="submit" class="btn text-white ms-2" style="background-color:#8000c9;">Aplicar</button>
+  </form>
+
+  <!-- Listado -->
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+    {% for libro in libros %}
+      <div class="col">
+        <div class="card shadow-lg border-0 rounded-4 h-100">
+          <img src="{% if libro.imagen %}{{ libro.imagen.url }}{% else %}{% static 'imgs/default_libro.jpg' %}{% endif %}"
+               class="card-img-top rounded-top-4"
+               alt="{{ libro.titulo }}">
+          <div class="card-body">
+            <h5 class="card-title" style="color:#8000c9;">{{ libro.titulo }}</h5>
+            <p class="card-text text-muted mb-1"><strong>Autor:</strong> {{ libro.autor }}</p>
+            <p class="card-text">{{ libro.descripcion|truncatewords:20 }}</p>
+          </div>
+          <div class="card-footer bg-transparent text-end border-0">
+            <a href="#" class="btn btn-sm text-white" style="background-color:#8000c9;">Ver más</a>
+          </div>
+        </div>
+      </div>
+    {% empty %}
+      <p class="text-center text-muted">No hay libros registrados aún.</p>
+    {% endfor %}
+  </div>
+</section>
+
+{% endblock %}

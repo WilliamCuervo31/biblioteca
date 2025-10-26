@@ -1,0 +1,38 @@
+{% extends './base.html' %}
+{% load static %}
+
+{% block navbar_button %}Volver{% endblock %}
+{% block navbar_link %}{% url 'inicio' %}{% endblock %}
+
+{% block content %}
+<section class="container my-5">
+  <h2 class="fw-bold mb-4 text-center" style="color: #8000c9;">Listado de Etiquetas</h2>
+
+  <div class="card shadow-lg p-4 border-0 rounded-4">
+    {% if etiquetas %}
+      <ul class="list-group">
+        {% for etiqueta in etiquetas %}
+          <li class="list-group-item">
+            <strong style="color:#8000c9;">{{ etiqueta.nombre }}</strong> 
+            <span class="text-muted">- {{ etiqueta.descripcion }}</span>
+
+            {% if etiqueta.hijos.all %}
+              <ul class="mt-2">
+                {% for hijo in etiqueta.hijos.all %}
+                  <li>{{ hijo.nombre }} <small class="text-muted">({{ hijo.descripcion }})</small></li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="text-center text-muted">No hay etiquetas registradas aún.</p>
+    {% endif %}
+  </div>
+
+  <div class="text-center mt-4">
+    <a href="{% url 'crearEtiqueta' %}" class="btn text-white btn-lg" style="background-color: #8000c9;">Crear nueva etiqueta</a>
+  </div>
+</section>
+{% endblock %}
