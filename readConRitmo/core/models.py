@@ -43,17 +43,13 @@ class Etiqueta(models.Model):
 
 
 class Libros(models.Model):
-    titulo = models.CharField(null=False, max_length=150)
+    titulo = models.CharField(max_length=150)
     descripcion = models.CharField(max_length=300)
-    autor_id = models.ForeignKey(Autor, on_delete=models.CASCADE, verbose_name="AutorId")
-    fecha_publicacion = models.DateField('FechaPublicación')
-    portada = models.ImageField(verbose_name="Portada", null=True, upload_to='portadasLibros')
+    autor = models.ForeignKey(Autor, on_delete=models.CASCADE)
+    fecha_publicacion = models.DateField()
+    portada = models.ImageField(upload_to='portadasLibros', null=True)
+    etiquetas = models.ManyToManyField(Etiqueta, through='LibroEtiqueta')
 
-    class Meta:
-        verbose_name = 'libro'
-        verbose_name_plural = 'libros'
-        db_table = 'libros'
-        ordering = ['id']
 
     def __str__(self):
         return f'{self.titulo},{self.autor_id}'

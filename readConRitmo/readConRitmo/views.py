@@ -4,6 +4,7 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
 from readConRitmo import urls
+from .utils import obtener_descendientes
 from django.contrib import messages
 from core.models import *
 from core.utils.trees import LibroBST
@@ -12,21 +13,26 @@ def index(request):
     return render(request, 'html/index.html')
 
 def consultaLibros(request):
-    arbol = LibroBST()
+    orden = request.GET.get("orden", "asc")
+    etiquetas = request.GET.getlist("etiquetas")
+
     libros = Libros.objects.all()
-    orden = request.GET.get('orden', 'asc')
 
-    for l in libros:
-        arbol.insertar(l)
+    if etiquetas:
+        libros = libros.filter(etiquetas__id__in=etiquetas).distinct()
 
-    libros_ordenados = arbol.in_order()
+    if orden == "asc":
+        libros = libros.order_by("titulo")
+    else:
+        libros = libros.order_by("-titulo")
 
-    if orden == 'desc':
-        libros_ordenados.reverse()
+    todas_etiquetas = Etiqueta.objects.all()
 
-    return render(request, 'html/consulta_libros.html', {
-        'libros': libros_ordenados,
-        'orden': orden
+    return render(request, "html/consulta_libros.html", {
+        "libros": libros,
+        "todas_etiquetas": todas_etiquetas,
+        "etiquetas_seleccionadas": etiquetas,
+        "orden": orden
     })
 
 def listarEtiquetas(request):

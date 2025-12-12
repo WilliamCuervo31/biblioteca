@@ -8,22 +8,38 @@
 <section class="container my-5">
   <h2 class="fw-bold mb-4 text-center" style="color:#8000c9;">Listado de Libros</h2>
 
-  <!-- Filtro de orden -->
-  <form method="get" action="{% url 'consulta_libro' %}" class="text-end mb-4">
-    <label for="orden" class="form-label me-2 fw-semibold">Ordenar:</label>
-    <select name="orden" id="orden" class="form-select d-inline-block w-auto">
-      <option value="asc" {% if request.GET.orden == "asc" %}selected{% endif %}>A - Z</option>
-      <option value="desc" {% if request.GET.orden == "desc" %}selected{% endif %}>Z - A</option>
-    </select>
-    <button type="submit" class="btn text-white ms-2" style="background-color:#8000c9;">Aplicar</button>
+  <form method="get" action="{% url 'consulta_libro' %}" class="mb-4">
+    <div class="row align-items-end">
+      <div class="col-md-6">
+        <label class="form-label fw-semibold">Filtrar por etiquetas:</label>
+        <select name="etiquetas" multiple class="form-select">
+          {% for et in todas_etiquetas %}
+            <option value="{{ et.id }}" {% if et.id|stringformat:"s" in etiquetas_seleccionadas %}selected{% endif %}>
+              {{ et.nombre }}
+            </option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="col-md-3">
+        <label class="form-label fw-semibold">Ordenar:</label>
+        <select name="orden" class="form-select">
+          <option value="asc" {% if orden == "asc" %}selected{% endif %}>A - Z</option>
+          <option value="desc" {% if orden == "desc" %}selected{% endif %}>Z - A</option>
+        </select>
+      </div>
+
+      <div class="col-md-3 text-end">
+        <button type="submit" class="btn text-white mt-3" style="background-color:#8000c9;">Aplicar</button>
+      </div>
+    </div>
   </form>
 
-  <!-- Listado -->
   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
     {% for libro in libros %}
       <div class="col">
         <div class="card shadow-lg border-0 rounded-4 h-100">
-          <img src="{% if libro.imagen %}{{ libro.imagen.url }}{% else %}{% static 'imgs/default_libro.jpg' %}{% endif %}"
+          <img src="{% if libro.portada %}{{ libro.portada.url }}{% else %}{% static 'imgs/default_libro.jpg' %}{% endif %}"
                class="card-img-top rounded-top-4"
                alt="{{ libro.titulo }}">
           <div class="card-body">
